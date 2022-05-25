@@ -2,6 +2,7 @@
 const express = require('express')
 const rowdy = require('rowdy-logger')
 const db = require('./models')
+const cryptoJS = require('crypto-js')
 
 // app config
 const PORT = process.env.PORT || 3000
@@ -22,12 +23,16 @@ app.use((req, res, next) => {
 // auth middleware
 app.use(async (req, res, next) => {
   
-  console.log(req.cookies)
+  // if there is a cookie, try to find that user in the db
   if (req.cookies.userId) {
-    const userId = req.cookies.userId
-    const user = await db.user.findByPk(userId)
+    // decrypt the user id in the cookie
+    const decryptedId = cryptoJS.AES.decrypt(req.cookies.userId, 'asdfasdf').toString(cryptoJS.enc.Utf8)
+    // find the user in the db
+    const user = await db.user.findByPk(decryptedId)
+    // mount the user on the res.locals
     res.locals.user = user
   } else {
+    // if there is no cookie -- no one is logged in
     res.locals.user = null
   }
 

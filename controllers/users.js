@@ -1,19 +1,25 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
+const bcrypt = require('bcrypt')
+const AES = require('crypto-js/aes')
 
 // POST /users -- creates a new user in the db, sets a user cookie, redirects home
 router.post('/', async (req, res) => {
   try {
-    // create a new user
+    // hash password before putting it in the db
+    const hashedPassword = bcrypt.hashSync(req.body.password, 12)
+    // try to create user
     const [user, created] = await db.user.findOrCreate({ 
       where: { email: req.body.email }, 
-      defaults: { password: req.body.password }
+      defaults: { password: hashedPassword }
     })
 
     // only let unique emails sign up
     if (created) {
-      res.cookie('userId', newUser.id)
+      // ecrpyt user id before saving it as cookie
+      const encryptedId = AES.encrypt(user.id.toString(), 'asdfasdf').toString()
+      res.cookie('userId', encryptedId)
       res.redirect('/')
     } else {
       res.render('users/new.ejs', { msg: 'email already exists' })
@@ -64,7 +70,8 @@ router.post('/login', async  (req, res) => {
     //check if email from form matches email in db
     if (foundUser.email === req.body.email) {
       // if so -- log the user in and send a cookie -- redirect to homepage
-      res.cookie('userId', foundUser.id)
+      const encryptedId = AES.encrypt(foundUser.id.toString(), 'asdfasdf').toString()
+      res.cookie('userId', encryptedId)
       res.redirect('/')
     } else {
       // if not redirect to login form
