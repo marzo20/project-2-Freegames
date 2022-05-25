@@ -1,3 +1,4 @@
+require('dotenv').config()
 // required packages
 const express = require('express')
 const rowdy = require('rowdy-logger')
@@ -26,7 +27,7 @@ app.use(async (req, res, next) => {
   // if there is a cookie, try to find that user in the db
   if (req.cookies.userId) {
     // decrypt the user id in the cookie
-    const decryptedId = cryptoJS.AES.decrypt(req.cookies.userId, 'asdfasdf').toString(cryptoJS.enc.Utf8)
+    const decryptedId = cryptoJS.AES.decrypt(req.cookies.userId, process.env.ENCRYPTION_KEY).toString(cryptoJS.enc.Utf8)
     // find the user in the db
     const user = await db.user.findByPk(decryptedId)
     // mount the user on the res.locals

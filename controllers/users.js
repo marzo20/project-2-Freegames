@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     // only let unique emails sign up
     if (created) {
       // ecrpyt user id before saving it as cookie
-      const encryptedId = AES.encrypt(user.id.toString(), 'asdfasdf').toString()
+      const encryptedId = AES.encrypt(user.id.toString(), process.env.ENCRYPTION_KEY).toString()
       res.cookie('userId', encryptedId)
       res.redirect('/')
     } else {
@@ -70,9 +70,9 @@ router.post('/login', async  (req, res) => {
     //check if email from form matches email in db
     if (foundUser.email === req.body.email) {
       // if so -- log the user in and send a cookie -- redirect to homepage
-      const encryptedId = AES.encrypt(foundUser.id.toString(), 'asdfasdf').toString()
+      const encryptedId = AES.encrypt(foundUser.id.toString(), process.env.ENCRYPTION_KEY).toString()
       res.cookie('userId', encryptedId)
-      res.redirect('/')
+      res.redirect('/users/profile')
     } else {
       // if not redirect to login form
       res.render('users/login.ejs', { msg })
