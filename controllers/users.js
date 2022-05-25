@@ -65,7 +65,7 @@ router.post('/login', async  (req, res) => {
 })
 
 // POST /users/logout -- clears cookie and redirects to homepage
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   res.clearCookie('userId')
   res.redirect('/')
 })
