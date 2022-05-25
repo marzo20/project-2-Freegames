@@ -1,6 +1,7 @@
 // required packages
 const express = require('express')
 const rowdy = require('rowdy-logger')
+const db = require('./models')
 
 // app config
 const PORT = process.env.PORT || 3000
@@ -11,7 +12,7 @@ app.set('view engine', 'ejs')
 const rowdyRes = rowdy.begin(app)
 app.use(require('express-ejs-layouts'))
 app.use(express.urlencoded({ extended: false }))
-
+app.use(require('cookie-parser')())
 // my first middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] Incoming Request: ${req.method} ${req.url}`)
@@ -20,9 +21,11 @@ app.use((req, res, next) => {
 
 // auth middleware
 app.use(async (req, res, next) => {
+  
+  console.log(req.cookies)
   if (req.cookies.userId) {
     const userId = req.cookies.userId
-    const user = await models.user.findByPk(userId)
+    const user = await db.user.findByPk(userId)
     res.locals.user = user
   } else {
     res.locals.user = null

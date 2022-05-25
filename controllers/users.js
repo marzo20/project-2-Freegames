@@ -23,6 +23,17 @@ router.post('/', async (req, res) => {
   }
 })
 
+// GET /users/profile -- renders user profile
+router.get('/profile', (req, res, next) => {
+  if (!res.locals.user) {
+    res.render('user/login.ejs', { msg: 'please login to continue' })
+    return
+  }
+    
+  res.render('users/profile.ejs', { user: res.locals.user }) 
+})
+
+
 // GET /users/new -- shows a sign up form
 router.get('/new', (req, res) => {
   res.render('users/new.ejs', { msg: null })
