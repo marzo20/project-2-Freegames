@@ -1,0 +1,8 @@
+{
+  "development": {
+    "database": "p2_auth_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  
+  }
+}
