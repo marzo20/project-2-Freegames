@@ -67,14 +67,15 @@ router.post('/login', async  (req, res) => {
       return
     }
 
-    //check if email from form matches email in db
-    if (foundUser.email === req.body.email) {
+    //check if pass from db matches pass in req.body
+    if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       // if so -- log the user in and send a cookie -- redirect to homepage
       const encryptedId = AES.encrypt(foundUser.id.toString(), process.env.ENCRYPTION_KEY).toString()
       res.cookie('userId', encryptedId)
       res.redirect('/users/profile')
     } else {
       // if not redirect to login form
+      console.log('pasword was incorrect')
       res.render('users/login.ejs', { msg })
     }
   } catch (err) {
