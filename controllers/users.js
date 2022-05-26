@@ -13,7 +13,7 @@ router.get('/new', (req, res) => {
 })
 
 // POST /users -- creates a new user and redirects to index
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
     try {
         // try to create th user
         const hashedPassword = bcrypt.hashSync(req.body.password, 12)
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
             where: {email: req.body.email},
             defaults: {password: hashedPassword}
         })
+        // throw new Error('server melted down')
         // if the user is new
         if(created) {
             // login them in by giving them cookie
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
             res.render('users/new.ejs', {msg: 'email exists in database already'})
         }
     } catch (err) {
-        console.log('err')
+        next(err)
     }
     
 })
@@ -49,7 +50,7 @@ router.get('/login', (req, res) => {
 
 // POST /userslogin -- authenticates user credentials against the database
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     try {
         // look up the user in the db based on their email
         const foundUser = await db.user.findOne({
@@ -78,7 +79,7 @@ router.post('/login', async (req, res) => {
             }
             
     } catch (err) {
-        console.log(err)
+        next(err)
     }
 })
 
