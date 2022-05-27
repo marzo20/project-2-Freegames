@@ -8,6 +8,7 @@ Then I can help you find and search by title genre and platforms you use
 
 ## API
  [Free to game](https://www.freetogame.com/api-doc)
+ https://www.freetogame.com/api-doc
 
 
 ---
