@@ -35,7 +35,13 @@ Then I can help you find and search by title genre and platforms you use
 | GET | /genre/ | Show \(Read\) | renders all genres|
 | GET | /platform/:id |show \(Read\)| shows all the games within selected platform
 | GET | /genre/:id | show \(Read\) | shows all the games with selected genre
-| GET | /game/:id | show \(Read\) | shows profiles of selected game
+| GET | /games/:id | show \(Read\) | shows profiles of selected game
+| GET | /Saved | show \(Read\) | shows games saved for later
+| POST | /saved | create \(create\) | shows profiles of selected game
+| GET | /edit/:id | Edit \(Read\) | Edit profile
+| put | /Edit/:id| Update \(Update\) | Updates data of user profile
+| DELETE | /saved/:id | Destroy \(DELETE\) | Deletes selected game from Saved games for later
+
 ---
 
 ## User View Wireframe
