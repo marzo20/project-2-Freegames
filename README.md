@@ -15,7 +15,7 @@ Then I can help you find and search by title genre and platforms you use
 ## ERD
 
 
-![ERD](Untitle.png)
+![ERD](ERD.png)
 
 
 ---
@@ -48,7 +48,7 @@ Then I can help you find and search by title genre and platforms you use
 - Make Navigate bar for genre and platforms
 - Make list for games saved for later
 
----
+--- 
 
 ## Stretch
 - Make a list of game that I already played
