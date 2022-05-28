@@ -4,34 +4,60 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style>
   <title>FreetoGame</title>
+  <header class="
+  flex  justify-center
+  ">FREE TO GAME</header>
 </head>
 <body>
-  <nav>
-    <ul>
-      <% if (user) {%>
-        <!-- if the user is logged in -->
-        <li>
-          <a href="/users/profile">profile</a>
-        </li>
-        <li>
-          <a href="/users/logout">Logout</a>
-        </li>
-      <%} else {%>
-        <!-- if the user is not logged in -->
-        <li>
-          <a href="/users/new">Sign up</a>
-        </li>
-        <li>
-          <a href="/users/login">Login</a>
-        </li>
-      <%}%>
-     
+  <div class="
+  grid
+  ">
+    <nav class="
+    flex justify-end gap-4
+    ">
       
-    </ul>
-  </nav>
-  <main>
-    <h1>Download games Free!</h1>
+        <% if (user) {%>
+          <!-- if the user is logged in -->
+          <a href="/users/profile">profile</a>
+          
+           <a href="/users/logout">Logout</a>
+          <%} else {%>
+          <!-- if the user is not logged in -->
+           <a href="/users/new">Sign up</a>
+          
+           <a href="/users/login">Login</a>
+          
+        <%}%>
+       </nav>
+       <nav class="
+        flex justify-evenly
+      ">
+      <a href="/genre">GENRE</a>
+      <a href="/platform">PLATFORM</a>
+      <a href="/search">SEARCH</a>
+    </nav>
+  </div>
+  
+  
+  <main class="
+  
+  ">
+    <div class="
+    flex  justify-center
+    ">
+    <h1>
+      Download games Free!
+    </h1>
+  </div>
     <%- body %> 
   </main>
   

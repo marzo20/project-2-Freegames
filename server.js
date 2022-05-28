@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const rowdy = require('rowdy-logger')
 const cookieParser= require('cookie-parser')
+const axios = require('axios')
 const db = require('./models')
 const cryptoJS = require('crypto-js')
 
@@ -56,7 +57,12 @@ next()
 // routes
 app.get('/', (req, res) => {
   // throw new Error('ooooooppssss')
-  res.render('index')
+  const Url = 'https://www.freetogame.com/api/games'
+  axios.get(Url)
+  .then(response => {
+    console.log(response.data[0])
+    res.render('index', {games: response.data})
+  })
 })
 
 // controllers
