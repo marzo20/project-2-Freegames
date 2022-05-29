@@ -5,11 +5,13 @@
 
 <%}%>
 
-<form action="/users/login" method="post">
-    <label for="email">Email:</label>
-    <input id="email" type="eamil" name="email" placeholder="enter your email" required/>
+<form class="
+grid justify-center gap-4 
+" action="/users/login" method="post">
+    <label for="loginId">LOGIN ID:</label>
+    <input id="loginId" type="loginId" name="loginId" placeholder="enter your login ID" required/>
     
-    <lable for="password">Password:</lable>
+    <lable for="password">PASSWORD:</lable>
     <input id="password" type="password" name="password" placeholder="enter your password" required/>
 
     <button type="submit">Login!</button>

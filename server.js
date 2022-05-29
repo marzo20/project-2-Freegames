@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
   console.log('request body:',req.body)
   // modify the response to give data to the routes/middleware that is 'downstream'
-  res.locals.myData = 'hi, I came from a middleware!'
+  res.locals.myData = 'Get a Free games today!'
   console.log(res.locals.myData)
   // tell express that the middleware is doen
   next()
@@ -33,10 +33,10 @@ app.use((req, res, next) => {
 app.use( async (req, res, next) => {
   try {
 // if there is a cookie, try to find that user in the db
-if (req.cookies.userId) {
+if (req.cookies.loginId) {
   // try to find that user in the db
-  const userId = req.cookies.userId
-  const decryptedId = cryptoJS.AES.decrypt(userId, process.env.ENC_KEY).toString(cryptoJS.enc.Utf8)
+  const loginId = req.cookies.loginId
+  const decryptedId = cryptoJS.AES.decrypt(loginId, process.env.ENC_KEY).toString(cryptoJS.enc.Utf8)
   const user =await db.user.findByPk(decryptedId)
   // mount the found user on the res.locals so that later routes can access the logged in user
 
@@ -67,6 +67,8 @@ app.get('/', (req, res) => {
 
 // controllers
 app.use('/users', require('./controllers/users.js'))
+app.use('/genre', require('./controllers/genre.js'))
+app.use('/platform', require('./controllers/platform.js'))
 // 404 error handler -- NEEDS TO GO LAST
 // app.get('/*', (req, res) => {
 //   // render a 404 template

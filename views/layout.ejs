@@ -12,21 +12,22 @@
       }
     }
   </style>
-  <title>FreetoGame</title>
+  <title>FreetoGame </title>
   <header class="
   flex  justify-center
-  ">FREE TO GAME</header>
+  "><a href="/">FREE TO GAME</a></header>
 </head>
 <body>
   <div class="
   grid
   ">
     <nav class="
-    flex justify-end gap-4
+    flex justify-end gap-4 m-5
     ">
       
         <% if (user) {%>
           <!-- if the user is logged in -->
+          <% console.log(user)%>
           <a href="/users/profile">profile</a>
           
            <a href="/users/logout">Logout</a>

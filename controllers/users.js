@@ -18,7 +18,7 @@ router.post('/', async (req, res, next) => {
         // try to create th user
         const hashedPassword = bcrypt.hashSync(req.body.password, 12)
         const [user, created] = await db.user.findOrCreate({
-            where: {email: req.body.email},
+            where: {loginId: req.body.loginId},
             defaults: {password: hashedPassword}
         })
         // throw new Error('server melted down')
@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
             // res.cookie('cookie name', cookie data)
             // TODO: encrypt id
             const encryptedId = cryptoJS.AES.encrypt(user.id.toString(), process.env.ENC_KEY).toString()
-            res.cookie('userId',encryptedId)
+            res.cookie('loginId',encryptedId)
             // redirect to the homepage (in the future this could redirect elsewhere)
             res.redirect('/users/profile')
         } else {
@@ -54,12 +54,12 @@ router.post('/login', async (req, res, next) => {
     try {
         // look up the user in the db based on their email
         const foundUser = await db.user.findOne({
-            where: {email: req.body.email}
+            where: {loginId: req.body.loginId}
         })
         const msg = 'bad login credentials, you are not authenticated'
         // if the user is not found -- display the login form and
         if(!foundUser) {
-            console.log('email not found on login')
+            console.log('ID not found on login')
             res.render('users/login.ejs', {msg})
             return // do not continue with the function
         } 
@@ -70,9 +70,9 @@ router.post('/login', async (req, res, next) => {
             if(compare) {
                 // if they match -- send the user a cookie! to log them in
                 const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
-            res.cookie('userId',encryptedId)
+            res.cookie('loginId',encryptedId)
                 // TODO: redirect to profile
-                res.redirect('/users/profile')
+                res.redirect('/', )
             }else {
                 // if not --render the login form with a message
                 res.render('users/login.ejs', {msg})
@@ -86,7 +86,7 @@ router.post('/login', async (req, res, next) => {
 // GEt /users/logout -- clear the cookie to log the user out
 router.get('/logout', (req, res ) => {
     // clear the cookie from storage
-    res.clearCookie('userId')
+    res.clearCookie('loginId')
     // redirect to root
     res.redirect('/')
 })
