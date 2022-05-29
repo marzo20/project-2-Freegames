@@ -64,6 +64,9 @@ app.get('/', (req, res) => {
     res.render('index', {games: response.data})
   })
 })
+app.get('/search', (req, res) => {
+  res.render('search')
+})
 
 // controllers
 app.use('/users', require('./controllers/users.js'))
