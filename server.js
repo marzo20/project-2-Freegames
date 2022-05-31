@@ -37,7 +37,7 @@ if (req.cookies.loginId) {
   // try to find that user in the db
   const loginId = req.cookies.loginId
   const decryptedId = cryptoJS.AES.decrypt(loginId, process.env.ENC_KEY).toString(cryptoJS.enc.Utf8)
-  const user =await db.user.findByPk(decryptedId)
+  const user = await db.user.findByPk(decryptedId)
   // mount the found user on the res.locals so that later routes can access the logged in user
 
   res.locals.user = user
@@ -60,12 +60,16 @@ app.get('/', (req, res) => {
   const Url = 'https://www.freetogame.com/api/games'
   axios.get(Url)
   .then(response => {
-    console.log(response.data[0])
     res.render('index', {games: response.data})
   })
 })
 // Get search page and search form
 app.get('/search', (req, res) => {
+  if(!res.locals.user) {
+    // if the user is not authorized, ask them to log in
+    res.render('users/login.ejs', {msg : 'please log in to continue'})
+    return //end the router here
+  }
   res.render('search/search')
 })
 app.get('/search/results', (req, res) => {
@@ -80,13 +84,6 @@ app.get('/search/results', (req, res) => {
     console.log(req.query.searchBy, req.query.input)
   })
 })
-// app.get('/search/results', (req, res) => {
-//   const Url = `https://www.freetogame.com/api/games?${req.body.searchBy}=${req.body.input}`
-//   axios.get(Url)
-//   .then(response => {
-//     res.render('search/results', {results: response.data})
-//   })
-// })
 
 // controllers
 app.use('/users', require('./controllers/users.js'))

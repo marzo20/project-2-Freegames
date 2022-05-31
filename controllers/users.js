@@ -34,8 +34,8 @@ router.post('/', async (req, res, next) => {
         } else {
             // if the user was not created
             // re render the login form with a message for the user
-            console.log('that email already exists')
-            res.render('users/new.ejs', {msg: 'email exists in database already'})
+            console.log('that ID already exists')
+            res.render('users/new.ejs', {msg: 'ID exists in database already'})
         }
     } catch (err) {
         next(err)
