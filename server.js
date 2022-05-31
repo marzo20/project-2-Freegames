@@ -64,9 +64,29 @@ app.get('/', (req, res) => {
     res.render('index', {games: response.data})
   })
 })
+// Get search page and search form
 app.get('/search', (req, res) => {
-  res.render('search')
+  res.render('search/search')
 })
+app.get('/search/results', (req, res) => {
+  
+  const Url = `https://www.freetogame.com/api/games?${req.query.searchBy}=${req.query.input}`
+  axios.get(Url)
+  .then(response => {
+    console.log(Url)
+    console.log(req.query)
+    res.render('search/results', {results: response.data})
+    
+    console.log(req.query.searchBy, req.query.input)
+  })
+})
+// app.get('/search/results', (req, res) => {
+//   const Url = `https://www.freetogame.com/api/games?${req.body.searchBy}=${req.body.input}`
+//   axios.get(Url)
+//   .then(response => {
+//     res.render('search/results', {results: response.data})
+//   })
+// })
 
 // controllers
 app.use('/users', require('./controllers/users.js'))
