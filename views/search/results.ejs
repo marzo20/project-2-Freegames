@@ -23,6 +23,9 @@
                 <!-- form to CREATE a new fave -->
                 <form method="POST" action="/saved">
                 <input hidden value="<%- result.id %>" name="gameId"/>
+                <input hidden value="<%- result.genre %>" name="genre"/>
+                <input hidden value="<%- result.platform %>" name="platform"/>
+                <input hidden value="<%- result.title %>" name="title"/>
                 <button type="submit">Save this game</button>
 
                 </form>

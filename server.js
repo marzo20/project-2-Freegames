@@ -89,20 +89,30 @@ app.get('/search/results', (req, res) => {
 
 app.get('/saved', async (req, res) => {
   // get all faves from db
-  const allSaved = await db.savedgames.findAll()
+  const allSaved = await db.savedgame.findAll()
   // render faves page
   res.render('saved', {allSaved})
-
+  console.log(allSaved)
 })
 app.post('/saved', async (req, res) => {
   // create new saved games in db
   // redirect to show all fave -- dex not exist yet
  try {
-  console.log(req.body.gameId)
-  const [save, created] = await db.savedgames.findOrCreate({
-    where: {gameId: req.body.gameId}
+  console.log(req.body.gameId,"GameId")
+  const [save, savedCreated] = await db.savedgame.findOrCreate({
+    where: {gameId: req.body.gameId,
+        userId: res.locals.user.id},
+        defaults: {title: req.body.title}
   })
-  if(created) {
+  await db.category.findOrCreate({
+    where: {gameId: req.body.gameId},
+    defaults: {
+      genre: req.body.genre,
+      platform: req.body.platform
+    }
+  })
+  
+  if(savedCreated) {
     res.redirect('/saved')
   } else {
     res.render('/saved', {msg: 'already saved to the list'}
@@ -111,8 +121,17 @@ app.post('/saved', async (req, res) => {
   
 
  } catch (err) {
-   console.log('erorrrrrrr')
+   console.log('erorrrrrrr',err)
  } 
+})
+
+app.delete('/saved/:id', async (req, res) => {
+  await db.savedgame.destroy(
+    {where: {
+      gameId: req.params.id
+    }}
+  )
+  res.redirect('/saved')
 })
 
 

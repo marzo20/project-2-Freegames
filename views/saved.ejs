@@ -1,1 +1,8 @@
-hello saved pg
+<% allSaved.forEach(saved => {%>
+    
+    <h2><%= saved.title %></h2>
+    <form method="POST" action="/saved/<%=saved.gameId%>?_method=DELETE">
+        <input hidden type="text" name="name" value="<%= saved.gameId %>">
+        <button type="submit">Remove</button>
+    </form>
+<%})%>
