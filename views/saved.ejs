@@ -1,5 +1,7 @@
 <% allSaved.forEach(saved => {%>
-    
+    <a href="<%=saved.game_url%>">
+        <img src="<%=saved.thumbnail%>">
+    </a>
     <h2><%= saved.title %></h2>
     <form method="POST" action="/saved/<%=saved.gameId%>?_method=DELETE">
         <input hidden type="text" name="name" value="<%= saved.gameId %>">

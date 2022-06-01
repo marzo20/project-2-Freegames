@@ -19,7 +19,8 @@ router.post('/', async (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(req.body.password, 12)
         const [user, created] = await db.user.findOrCreate({
             where: {loginId: req.body.loginId},
-            defaults: {password: hashedPassword}
+            defaults: {password: hashedPassword,
+                       nickname: req.body.nickname}
         })
         // throw new Error('server melted down')
         // if the user is new
@@ -30,7 +31,7 @@ router.post('/', async (req, res, next) => {
             const encryptedId = cryptoJS.AES.encrypt(user.id.toString(), process.env.ENC_KEY).toString()
             res.cookie('loginId',encryptedId)
             // redirect to the homepage (in the future this could redirect elsewhere)
-            res.redirect('/users/profile')
+            res.redirect('users/profile')
         } else {
             // if the user was not created
             // re render the login form with a message for the user
@@ -96,8 +97,29 @@ router.get('/profile', (req, res) => {
         // if the user is not authorized, ask them to log in
         res.render('users/login.ejs', {msg : 'please log in to continue'})
         return //end the router here
+    } else {
+        res.render('users/profile.ejs', {user: res.locals.user})
     }
-    res.render('users/profile', {user: res.locals.user})
+})
+router.get('/profile/edit', (req, res) => {
+    res.render('users/edit.ejs')
+})
+router.put('/profile', async (req, res) => {
+    try{
+        const newNick = req.body.nickname 
+        const user = await db.user.findOne({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        user.nickname = newNick
+        await user.save()
+        console.log(user)
+        res.redirect('/users/profile')
+    }catch (err) {
+        console.log(err)
+    }
+   
     
 })
 

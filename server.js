@@ -89,7 +89,9 @@ app.get('/search/results', (req, res) => {
 
 app.get('/saved', async (req, res) => {
   // get all faves from db
-  const allSaved = await db.savedgame.findAll()
+  const allSaved = await db.savedgame.findAll({
+    where: {userId: res.locals.user.id}
+  })
   // render faves page
   res.render('saved', {allSaved})
   console.log(allSaved)

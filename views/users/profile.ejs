@@ -1,6 +1,9 @@
 <h2>User Profile</h2>
 
-<h3>Thanks for being a user, <%= user.loginId%>!🎉</h3>  
-<% games.forEach(game => {%>
-    <img src="<%=game.thumbnail%>"/>
-<%  })%>
+<h3>Thanks for being a user, <%= user.nickname%>!🎉</h3>  
+
+<form method="GET" action="/users/profile/edit">
+    <button type="submit">Edit my nickname</button>
+</form>
+
+<a href="/saved">Go to My Saved Games</a>
