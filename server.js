@@ -6,6 +6,7 @@ const cookieParser= require('cookie-parser')
 const axios = require('axios')
 const db = require('./models')
 const cryptoJS = require('crypto-js')
+const methodOverride = require('method-override')
 
 // app config
 const PORT = process.env.PORT || 3000
@@ -17,15 +18,16 @@ const rowdyRes = rowdy.begin(app)
 app.use(require('express-ejs-layouts'))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(methodOverride('_method'))
 
 // DIY middleward
 // happenes on every request
 app.use((req, res, next) => {
-  console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
-  console.log('request body:',req.body)
+  // console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
+  // console.log('request body:',req.body)
   // modify the response to give data to the routes/middleware that is 'downstream'
   res.locals.myData = 'Get a Free games today!'
-  console.log(res.locals.myData)
+  // console.log(res.locals.myData)
   // tell express that the middleware is doen
   next()
 })
@@ -77,13 +79,43 @@ app.get('/search/results', (req, res) => {
   const Url = `https://www.freetogame.com/api/games?${req.query.searchBy}=${req.query.input}`
   axios.get(Url)
   .then(response => {
-    console.log(Url)
-    console.log(req.query)
+    // console.log(Url)
+    // console.log(req.query)
     res.render('search/results', {results: response.data})
     
-    console.log(req.query.searchBy, req.query.input)
+    // console.log(req.query.searchBy, req.query.input)
   })
 })
+
+app.get('/saved', async (req, res) => {
+  // get all faves from db
+  const allSaved = await db.savedgames.findAll()
+  // render faves page
+  res.render('saved', {allSaved})
+
+})
+app.post('/saved', async (req, res) => {
+  // create new saved games in db
+  // redirect to show all fave -- dex not exist yet
+ try {
+  console.log(req.body.gameId)
+  const [save, created] = await db.savedgames.findOrCreate({
+    where: {gameId: req.body.gameId}
+  })
+  if(created) {
+    res.redirect('/saved')
+  } else {
+    res.render('/saved', {msg: 'already saved to the list'}
+    )
+  }
+  
+
+ } catch (err) {
+   console.log('erorrrrrrr')
+ } 
+})
+
+
 
 // controllers
 app.use('/users', require('./controllers/users.js'))

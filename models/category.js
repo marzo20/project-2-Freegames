@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   category.init({
-    gamdId: DataTypes.INTEGER,
+    gameId: DataTypes.INTEGER,
     genre: DataTypes.STRING,
     platform: DataTypes.STRING
   }, {

@@ -1,0 +1,18 @@
+
+<h2>Top 10 <%=category%> games</h2>
+
+    <h3> <% games.forEach(game => {%>
+        <ol type="1">
+            <li>
+                <a href="<%= game.game_url%>">
+                <img src="<%= game.thumbnail%>">
+                </a>
+                <%= game.title %>
+            </li>
+        </ol>
+        
+    </h3>
+    <%})%>
+
+    
+
