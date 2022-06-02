@@ -1,3 +1,4 @@
+const { default: axios } = require('axios')
 const express = require('express')
 
 const router = express.Router()
@@ -12,8 +13,14 @@ router.get('/', (req, res) => {
     res.render('platform/main.ejs')
 })
 // GET /platform/pc --renders all the pc games
-router.get('/pc', (req, res) => {
-    res.render('platform/pc')
+router.get('/:id', (req, res) => {
+    const Url = `https://www.freetogame.com/api/games?platform=${req.params.id}`
+    axios.get(Url)
+    .then(response => {
+        console.log(response.data)
+        res.render('platform/pc', {games: response.data})
+    })
+    
 })
 
 // GET /platform/browser -- renders all the browser platformed games

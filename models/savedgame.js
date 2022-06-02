@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   savedgame.init({
     gameId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    game_url: DataTypes.STRING,
+    thumbnail: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'savedgame',

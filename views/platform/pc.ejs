@@ -1,1 +1,39 @@
 <h3>this pc game lists</h3>
+
+<h3> <% games.forEach(game => {%>
+    <ul>
+        <li>
+            <a href="<%= game.game_url%>">
+            <img src="<%= game.thumbnail%>">
+            </a>
+            
+        </li>
+        <li>
+            Title: <%= game.title%>
+        </li>
+        <li>
+            Platform: <%= game.platform%>
+        </li>
+        <li>
+            Genre: <%= game.genre%>
+        </li>
+        <li>
+            Description: <%= game.short_description%>
+        </li>
+        <li>
+            <a href="<%= game.game_url%>">GO PLAY!</a>
+            <!-- form to CREATE a new game in saved for later -->
+            <form method="POST" action="/saved">
+                <input hidden value="<%= game.id %>" name="gameId"/>
+                <input hidden value="<%= game.genre %>" name="genre"/>
+                <input hidden value="<%= game.platform %>" name="platform"/>
+                <input hidden value="<%= game.title %>" name="title"/>
+                <input hidden value="<%= game.thumbnail %>" name="thumbnail"/>
+                <input hidden value="<%= game.game_url %>" name="game_url"/>
+                <button type="submit">Save this game</button>
+
+            </form>
+        </li>
+    </ul>
+</h3>
+<%})%>

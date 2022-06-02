@@ -22,10 +22,12 @@
                 <a href="<%= result.game_url%>">GO PLAY!</a>
                 <!-- form to CREATE a new game in saved for later -->
                 <form method="POST" action="/saved">
-                <input hidden value="<%- result.id %>" name="gameId"/>
-                <input hidden value="<%- result.genre %>" name="genre"/>
-                <input hidden value="<%- result.platform %>" name="platform"/>
-                <input hidden value="<%- result.title %>" name="title"/>
+                <input hidden value="<%= result.id %>" name="gameId"/>
+                <input hidden value="<%= result.genre %>" name="genre"/>
+                <input hidden value="<%= result.platform %>" name="platform"/>
+                <input hidden value="<%= result.title %>" name="title"/>
+                <input hidden value="<%= result.thumbnail %>" name="thumbnail"/>
+                <input hidden value="<%= result.game_url %>" name="game_url"/>
                 <button type="submit">Save this game</button>
 
                 </form>

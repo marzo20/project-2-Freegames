@@ -104,7 +104,10 @@ app.post('/saved', async (req, res) => {
   const [save, savedCreated] = await db.savedgame.findOrCreate({
     where: {gameId: req.body.gameId,
         userId: res.locals.user.id},
-        defaults: {title: req.body.title}
+        defaults: {
+          title: req.body.title,
+          thumbnail: req.body.thumbnail,
+          game_url: req.body.game_url}
   })
   await db.category.findOrCreate({
     where: {gameId: req.body.gameId},
