@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-// Get /genre/ -- renders lists of genre.
+// Get /platform/ -- renders lists of platform.
 router.get('/', (req, res) => {
     if(!res.locals.user) {
         // if the user is not authorized, ask them to log in
@@ -11,7 +11,15 @@ router.get('/', (req, res) => {
     }
     res.render('platform/main.ejs')
 })
+// GET /platform/pc --renders all the pc games
+router.get('/pc', (req, res) => {
+    res.render('platform/pc')
+})
 
+// GET /platform/browser -- renders all the browser platformed games
+router.get('/browser', (req, res) => {
+    res.render('platform/browser')
+})
 
 
 
