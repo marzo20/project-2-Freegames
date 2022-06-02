@@ -20,7 +20,7 @@
             </li>
             <li>
                 <a href="<%= result.game_url%>">GO PLAY!</a>
-                <!-- form to CREATE a new fave -->
+                <!-- form to CREATE a new game in saved for later -->
                 <form method="POST" action="/saved">
                 <input hidden value="<%- result.id %>" name="gameId"/>
                 <input hidden value="<%- result.genre %>" name="genre"/>

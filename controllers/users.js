@@ -84,13 +84,15 @@ router.post('/login', async (req, res, next) => {
     }
 })
 
-// GEt /users/logout -- clear the cookie to log the user out
+// GET /users/logout -- clear the cookie to log the user out
 router.get('/logout', (req, res ) => {
     // clear the cookie from storage
     res.clearCookie('loginId')
     // redirect to root
     res.redirect('/')
 })
+
+// GET/profile render user profile page
 router.get('/profile', (req, res) => {
     // check if user is authorized
     if(!res.locals.user) {
@@ -101,9 +103,13 @@ router.get('/profile', (req, res) => {
         res.render('users/profile.ejs', {user: res.locals.user})
     }
 })
+
+// GET /profile/edit rendering profile edit page
 router.get('/profile/edit', (req, res) => {
     res.render('users/edit.ejs')
 })
+
+// PUT /profile  update new nickname for user profile
 router.put('/profile', async (req, res) => {
     try{
         const newNick = req.body.nickname 
