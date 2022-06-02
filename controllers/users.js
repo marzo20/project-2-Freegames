@@ -83,7 +83,6 @@ router.post('/login', async (req, res, next) => {
         next(err)
     }
 })
-
 // GET /users/logout -- clear the cookie to log the user out
 router.get('/logout', (req, res ) => {
     // clear the cookie from storage
@@ -91,7 +90,6 @@ router.get('/logout', (req, res ) => {
     // redirect to root
     res.redirect('/')
 })
-
 // GET/profile render user profile page
 router.get('/profile', (req, res) => {
     // check if user is authorized
