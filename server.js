@@ -62,8 +62,16 @@ app.get('/', (req, res) => {
   const Url = 'https://www.freetogame.com/api/games'
   axios.get(Url)
   .then(response => {
-    res.render('index', {games: response.data})
+    if(!res.locals.user) {
+      console.log('Login Needed')
+      res.render('index', {msg: 'Login to Download more Free Games',
+                          games: response.data})
+    }else {
+      res.render('index', {msg: 'Download free games!',
+                          games: response.data})
+    }
   })
+  
 })
 
 // GET /saved --render a page for games saved for later

@@ -1,6 +1,6 @@
 <div >
     <h2 class="
-    grid grid-cols-2 m-5 gap-5
+    grid grid-cols-2 m-5 gap-5 text-slate-200
     ">
     <% results.forEach(result => {%>
         <img src="<%= result.thumbnail%>" alt="game poster">
@@ -19,7 +19,10 @@
                 Description: <%= result.short_description%>
             </li>
             <li>
-                <a href="<%= result.game_url%>">GO PLAY!</a>
+                <div class="flex m-1">
+                    <a class="flex 10px border-slate-200 border-2 p-4 m1"
+                    href="<%= result.game_url%>">GO PLAY!</a>
+                </div>
                 <!-- form to CREATE a new game in saved for later -->
                 <form method="POST" action="/saved">
                 <input hidden value="<%= result.id %>" name="gameId"/>
@@ -28,7 +31,8 @@
                 <input hidden value="<%= result.title %>" name="title"/>
                 <input hidden value="<%= result.thumbnail %>" name="thumbnail"/>
                 <input hidden value="<%= result.game_url %>" name="game_url"/>
-                <button type="submit">Save this game</button>
+                <button class="flex border-slate-200 border-2 p-4 m-1"
+                type="submit">SAVE</button>
 
                 </form>
             </li>

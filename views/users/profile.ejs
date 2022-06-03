@@ -1,11 +1,14 @@
-<div>
+<div class="grid gap-5 m-10 text-slate-200">
     <h2 class="flex justify-center">User Profile</h2>
 
-    <h3 class="flex justify-center">Thanks for being a user, <%= user.nickname%>!🎉</h3>  
+    <h3 class="flex justify-center">Welcome to FREETOGAME, <%= user.nickname%>!🎉</h3>  
 
     <form class="flex justify-center" method="GET" action="/users/profile/edit">
-        <button type="submit">Edit my nickname</button>
+        <button class="border-blue-400 text-blue-400 border-2 p-3"
+        type="submit">Edit my nickname</button>
     </form>
-
-    <a class="flex justify-center" href="/saved">Go to My Saved Games</a>
+    <div class="flex justify-center 30px">
+        <a class="flex justify-center border-blue-400 text-blue-400 border-2 p-3" href="/saved">Go to My Saved Games</a>
+    </div>
+    
 </div>

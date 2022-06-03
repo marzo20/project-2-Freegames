@@ -1,18 +1,19 @@
-<form class="flex justify-center gap-5" action="/search/results" method="GET">
+<form class="flex justify-center gap-5 m-40 text-slate-200" action="/search/results" method="GET">
     <!-- <input type="radio" id="title" name="searchBy" value="title">
     <label for="title">TITLE</label> -->
-    SearchBy
-    <div>
+    <p class="m-1 p-2">SearchBy</p>
+    <div class="m-1 p-2">
         <input type="radio" id="category" name="searchBy" value="category">
         <label for="category">GENRE</label>
     </div>
-    <div>
+    <div class="m-1 p-2">
         <input type="radio" id="platform" name="searchBy" value="platform">
         <label for="platform">PLATFORM</label>
     </div>
     <div>
-        <input type="text" name="input" placeholder="search game">
-        <button type="submit">search</button>
+        <input class="text-slate-800" type="text" name="input" placeholder="search game">
+        <button class="border-slate-200 border-2 p-2 m-1"
+        type="submit">search</button>
     </div>
     
 </form>

@@ -1,19 +1,21 @@
 <% if (msg) { %>
-    <div>
+    <div class="flex justify-center text-slate-200 m-10">
         <p><%= msg %></p>
     </div>
 
 <%}%>
 
 <form class="
-grid justify-center gap-4 
+grid justify-center gap-4 text-blue-400 p-3 m-10
 " action="/users/login" method="post">
     <label for="loginId">LOGIN ID:</label>
-    <input id="loginId" type="loginId" name="loginId" placeholder="enter your login ID" required/>
+    <input class="border-blue-400 border-2"
+    id="loginId" type="loginId" name="loginId" placeholder="enter your login ID" required/>
     
     
     <lable for="password">PASSWORD:</lable>
-    <input id="password" type="password" name="password" placeholder="enter your password" required/>
+    <input class="border-blue-400 border-2"
+    id="password" type="password" name="password" placeholder="enter your password" required/>
 
     <button type="submit">Login!</button>
 </form>

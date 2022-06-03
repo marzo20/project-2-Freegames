@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     }
     res.render('genre/main.ejs')
 })
-
+// listing 10 popular games categorized by its genre
 router.get('/:id', (req, res) => {
     const Url = `https://www.freetogame.com/api/games?category=${req.params.id}&sort-by=popularity`
     axios.get(Url)

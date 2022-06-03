@@ -24,20 +24,24 @@ bg-gray-600
   grid
   ">
     <nav class="
-    flex justify-end gap-4 m-5
+    flex justify-end gap-4 m-5 
     ">
       
         <% if (user) {%>
           <!-- if the user is logged in -->
           <% console.log(user)%>
-          <a href="/users/profile">profile</a>
+          <a class="border-blue-400 text-blue-400 border-2 p-3"
+          href="/users/profile">profile</a>
           
-           <a href="/users/logout">Logout</a>
+           <a class="border-blue-400 text-blue-400 border-2 p-3"
+           href="/users/logout">Logout</a>
           <%} else {%>
           <!-- if the user is not logged in -->
-           <a href="/users/new">Sign up</a>
+           <a class="border-blue-400 text-blue-400 border-2 p-3"
+           href="/users/new">Sign up</a>
           
-           <a href="/users/login">Login</a>
+           <a class="border-blue-400 text-blue-400 border-2 p-3"
+           href="/users/login">Login</a>
           
         <%}%>
        </nav>
@@ -48,10 +52,10 @@ bg-gray-600
       hover:animate-bounce inline-block py-4 px-8 bg-blue-500 text-blue-100 rounded-lg" 
       href="/genre">GENRE</a>
       <a class="
-      hover:animate-bounce inline-block py-4 px-8 bg-teal-500 text-teal-100 rounded-lg"
+      hover:animate-bounce inline-block py-4 px-8 bg-blue-500 text-blue-100 rounded-lg"
       href="/platform">PLATFORM</a>
       <a class="
-      hover:animate-bounce inline-block py-4 px-8 bg-yellow-500 text-yellow-100 rounded-lg"
+      hover:animate-bounce inline-block py-4 px-8 bg-blue-500 text-blue-100 rounded-lg"
       href="/search">SEARCH</a>
     </nav>
   </div>
@@ -63,11 +67,7 @@ bg-gray-600
     <div class="
     flex  justify-center
     ">
-    <h1 class="
-    animate-pulse inline-block py-4 px-40 bg-red-500 text-red-100 rounded-lg m-10
-    ">
-      Download games Free!
-    </h1>
+    
   </div>
     <%- body %> 
   </main>

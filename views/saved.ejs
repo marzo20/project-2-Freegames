@@ -1,10 +1,27 @@
-<% allSaved.forEach(saved => {%>
-    <a href="<%=saved.game_url%>">
-        <img src="<%=saved.thumbnail%>">
-    </a>
-    <h2><%= saved.title %></h2>
-    <form method="POST" action="/saved/<%=saved.gameId%>?_method=DELETE">
-        <input hidden type="text" name="name" value="<%= saved.gameId %>">
-        <button type="submit">Remove</button>
-    </form>
-<%})%>
+<div >
+    <h2 class="
+    grid grid-cols-2 m-5 gap-5 text-slate-200
+    ">
+    <% allSaved.forEach(saved => {%>
+        <img src="<%= saved.thumbnail%>" alt="game poster">
+       
+        <ul>
+            <li>
+                Title: <%= saved.title%>
+            </li>
+            <li>
+                <div class="flex m-1">
+                    <a class="flex 10px border-slate-200 border-2 p-4 m1"
+                    href="<%= saved.game_url%>">GO PLAY!</a>
+                </div>
+                <form method="POST" action="/saved/<%=saved.gameId%>?_method=DELETE">
+                    <input hidden type="text" name="name" value="<%= saved.gameId %>">
+                    <button class="flex border-slate-200 border-2 p-4 m-1"
+                    type="submit">Remove</button>
+                </form>
+            </li>
+
+        </ul>
+        <%})%>
+    </h2>
+</div>
