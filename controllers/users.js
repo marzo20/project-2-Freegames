@@ -118,7 +118,7 @@ router.put('/profile', async (req, res) => {
         })
         user.nickname = newNick
         await user.save()
-        console.log(user)
+        // console.log(user)
         res.redirect('/users/profile')
     }catch (err) {
         console.log(err)

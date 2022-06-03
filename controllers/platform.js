@@ -12,21 +12,18 @@ router.get('/', (req, res) => {
     }
     res.render('platform/main.ejs')
 })
-// GET /platform/pc --renders all the pc games
+// GET /platform/:id --renders all the game sort by platforms
 router.get('/:id', (req, res) => {
     const Url = `https://www.freetogame.com/api/games?platform=${req.params.id}`
     axios.get(Url)
     .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         res.render('platform/pc', {games: response.data})
     })
     
 })
 
-// GET /platform/browser -- renders all the browser platformed games
-router.get('/browser', (req, res) => {
-    res.render('platform/browser')
-})
+
 
 
 

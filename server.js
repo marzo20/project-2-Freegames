@@ -26,8 +26,8 @@ app.use((req, res, next) => {
   // console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
   // console.log('request body:',req.body)
   // modify the response to give data to the routes/middleware that is 'downstream'
-  res.locals.myData = 'Get a Free games today!'
-  console.log(res.locals.myData)
+  // res.locals.myData = 'Get a Free games today!'
+  // console.log(res.locals.myData)
   // tell express that the middleware is doen
   next()
 })
@@ -82,14 +82,14 @@ app.get('/saved', async (req, res) => {
   })
   // render faves page
   res.render('saved', {allSaved})
-  console.log(allSaved)
+  // console.log(allSaved)
 })
 // POST /saved -- adding a game to saved game list.
 app.post('/saved', async (req, res) => {
   // create new saved games in db
   // redirect to show all fave -- dex not exist yet
  try {
-  console.log(req.body.gameId,"GameId")
+  // console.log(req.body.gameId,"GameId")
   const [save, savedCreated] = await db.savedgame.findOrCreate({
     where: {gameId: req.body.gameId,
         userId: res.locals.user.id},
@@ -145,18 +145,21 @@ app.use('/genre', require('./controllers/genre.js'))
 app.use('/platform', require('./controllers/platform.js'))
 app.use('/search', require('./controllers/search.js'))
 // 404 error handler -- NEEDS TO GO LAST
-// app.get('/*', (req, res) => {
-//   // render a 404 template
-// })
+app.get('/*', (req, res, next) => {
+  // render a 404 template
+  const error = new Error("not found")
+  error.status = 404
+  next(error)
+})
 app.use((error, req, res, next) => {
   // render a 404 template
-  console.log(error)
+  console.log('404 error is happening',error)
   res.status(404).render('404.ejs')
 })
 // 500 error handler
 //  needs to have all 4 params
 app.use((error, req, res, next) => {
-  console.log(error)
+  console.log('500 error!!!!', error)
   // send a 500 error template
   res.status(500).render('500.ejs')
 })

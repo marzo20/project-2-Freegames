@@ -8,7 +8,7 @@ const testBcrypt = () => {
     // when a user sign up, we will hash their pass and store it in out db
     const salt = 12
     const hash = bcrypt.hashSync(password, salt)
-    console.log(hash)
+    // console.log(hash)
     // when a user logs in we can use compare synce to match passwords to our db's hashes
     const compare = bcrypt.compareSync(password, hash)
     console.log('do they match?', compare)
