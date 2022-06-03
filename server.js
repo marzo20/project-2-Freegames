@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   // console.log('request body:',req.body)
   // modify the response to give data to the routes/middleware that is 'downstream'
   res.locals.myData = 'Get a Free games today!'
-  // console.log(res.locals.myData)
+  console.log(res.locals.myData)
   // tell express that the middleware is doen
   next()
 })
@@ -97,6 +97,13 @@ app.post('/saved', async (req, res) => {
       platform: req.body.platform
     }
   })
+  await db.game.findOrCreate({
+    where: {id: req.body.gameId},
+    defaults: {title: req.body.title,
+              gameUrl: req.body.game_url,
+              description: req.body.short_description
+    }
+  })
   
   if(savedCreated) {
     res.redirect('/saved')
@@ -133,8 +140,9 @@ app.use('/search', require('./controllers/search.js'))
 // app.get('/*', (req, res) => {
 //   // render a 404 template
 // })
-app.use((req, res, next) => {
+app.use((error, req, res, next) => {
   // render a 404 template
+  console.log(error)
   res.status(404).render('404.ejs')
 })
 // 500 error handler

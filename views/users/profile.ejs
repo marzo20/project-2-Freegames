@@ -1,9 +1,11 @@
-<h2>User Profile</h2>
+<div>
+    <h2 class="flex justify-center">User Profile</h2>
 
-<h3>Thanks for being a user, <%= user.nickname%>!🎉</h3>  
+    <h3 class="flex justify-center">Thanks for being a user, <%= user.nickname%>!🎉</h3>  
 
-<form method="GET" action="/users/profile/edit">
-    <button type="submit">Edit my nickname</button>
-</form>
+    <form class="flex justify-center" method="GET" action="/users/profile/edit">
+        <button type="submit">Edit my nickname</button>
+    </form>
 
-<a href="/saved">Go to My Saved Games</a>
+    <a class="flex justify-center" href="/saved">Go to My Saved Games</a>
+</div>
