@@ -1,19 +1,64 @@
 <form class="flex justify-center gap-5 m-40 text-slate-200" action="/search/results" method="GET">
     <!-- <input type="radio" id="title" name="searchBy" value="title">
     <label for="title">TITLE</label> -->
-    <p class="m-1 p-2">SearchBy</p>
-    <div class="m-1 p-2">
-        <input type="radio" id="category" name="searchBy" value="category">
-        <label for="category">GENRE</label>
-    </div>
-    <div class="m-1 p-2">
-        <input type="radio" id="platform" name="searchBy" value="platform">
-        <label for="platform">PLATFORM</label>
-    </div>
-    <div>
-        <input class="text-slate-800" type="text" name="input" placeholder="search game">
-        <button class="border-slate-200 border-2 p-2 m-1"
-        type="submit">search</button>
-    </div>
     
+    <p class="m-1 p-2">SELECT GENRE AND PLATFORM</p>
+    <div class="m-1 p-2">
+        <label for="platform">PLATFORM</label>
+        <select class="text-slate-800" name="platform" id="platform">
+            <option value="pc">PC</option>
+            <option value="browser">browser</option>
+            <option value="all">all</option>
+        </select>
+    </div>
+    <div class="m-1 p-2">
+        <label for="category">GENRE</label>
+        <select class="text-slate-800" name="category" id="category">
+            <option value="MMORPG">MMORPG</option>
+            <option value="SHOOTER">SHOOTER</option>
+            <option value="STRATEGY">STRATEGY</option>
+            <option value="MOBA">MOBA</option>
+            <option value="RACING">RACING</option>
+            <option value="SPORTS">SPORTS</option>
+            <option value="SOCIAL">SOCIAL</option>
+            <option value="SANDBOX">SANDBOX</option>
+            <option value="OPEN-WORLD">OPEN-WORLD</option>
+            <option value="SURVIVAL">SURVIVAL</option>
+            <option value="PVP">PVP</option>
+            <option value="PVE">PVE</option>
+            <option value="PIXEL">PIXEL</option>
+            <option value="VOXEL">VOXEL</option>
+            <option value="ZOMBIE">ZOMBIE</option>
+            <option value="TURN-BASED">TURN-BASED</option>
+            <option value="FIRST-PERSON">FIRST-PERSON</option>
+            <option value="THIRD-PERSON">THIRD-PERSON</option>
+            <option value="TOP-DOWN">TOP-DOWN</option>
+            <option value="TANK">TANK</option>
+            <option value="SPACE">SPACE</option>
+            <option value="SAILING">SAILING</option>
+            <option value="SIDE-SCROLLER">SIDE-SCROLLER</option>
+            <option value="SUPERHERO">SUPERHERO</option>
+            <option value="PERMADEATH">PERMADEATH</option>
+            <option value="CARD">CARD</option>
+            <option value="BATTLE-ROYALE">BATTLE-ROYALE</option>
+            <option value="MMO">MMO</option>
+            <option value="MMOFPS">MMOFPS</option>
+            <option value="MMOTPS">MMOTPS</option>
+            <option value="3D">3D</option>
+            <option value="2D">2D</option>
+            <option value="ANIME">ANIME</option>
+            <option value="FANTASY">FANTASY</option>
+            <option value="FIGHTING">FIGHTING</option>
+            <option value="ACTION-RPG">ACTION-RPG</option>
+            <option value="ACTION">ACTION</option>
+            <option value="MILITARY">MILITARY</option>
+            <option value="MARTIAL-ARTS">MARTIAL-ARTS</option>
+            <option value="FLIGHT">FLIGHT</option>
+            <option value="LOW-SPEC">LOW-SPEC</option>
+            <option value="TOWER-DEFECNSE">TOWER-DEFECNSE</option>
+            <option value="SCI-FI">SCI-FI</option>
+          </select>
+    </div>
+    <button class="border-slate-200 border-2 p-2 m-1"
+        type="submit">search</button>
 </form>

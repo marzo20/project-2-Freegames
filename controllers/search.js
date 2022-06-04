@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.get('/results', (req, res) => {
   // console.log("request is", req.query)
   try{
-    const Url = `https://www.freetogame.com/api/games?${req.query.searchBy}=${req.query.input}`
+    const Url = `https://www.freetogame.com/api/games?category=${req.query.category}&platform=${req.query.platform}`
     axios.get(Url)
     .then(response => {
       // res.send("response from",Url)
