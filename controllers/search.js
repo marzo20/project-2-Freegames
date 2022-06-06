@@ -19,13 +19,9 @@ router.get('/results', (req, res) => {
     axios.get(Url)
     .then(response => {
       // res.send("response from",Url)
-      if(!response.data) {
-        res.render('search/noresult', {msg: "result not found, try another keyword"})
-      } else {
+      
         res.render('search/results', {results: response.data,
                                       msg: ""})
-      }
-      
       
       // console.log(req.query.searchBy, req.query.input)
     }) 

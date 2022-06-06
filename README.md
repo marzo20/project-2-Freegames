@@ -64,7 +64,7 @@ Then I can help you find and search by title genre and platforms you use
 - Able to log in
 - Encrypt UserID
 - save hased password in DB
-- Search games by title
+- search games by genre and platform
 - Make Navigate bar for genre and platforms
 - Make list for games saved for later
 
