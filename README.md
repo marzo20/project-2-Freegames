@@ -6,6 +6,10 @@ Then I can help you find and search by title genre and platforms you use
 
 ---
 
+## Link
+
+- https://freetogame.herokuapp.com/
+
 ## API
  [Free to game](https://www.freetogame.com/api-doc)
  https://www.freetogame.com/api-doc
