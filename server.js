@@ -80,9 +80,20 @@ app.get('/saved', async (req, res) => {
   const allSaved = await db.savedgame.findAll({
     where: {userId: res.locals.user.id}
   })
-  // render faves page
-  res.render('saved', {allSaved})
+  console.log(allSaved)
+  if(allSaved.length === 0){
+// render faves page
+  res.render('saved', {allSaved,
+  msg: "No games in the List"})
   // console.log(allSaved)
+  }else{
+// render faves page
+  res.render('saved', {allSaved,
+  msg: ""})
+  
+  // console.log(allSaved)
+  }
+  
 })
 // POST /saved -- adding a game to saved game list.
 app.post('/saved', async (req, res) => {
@@ -114,9 +125,17 @@ app.post('/saved', async (req, res) => {
   })
   
   if(savedCreated) {
-    res.redirect('/saved')
+    const allSaved = await db.savedgame.findAll({
+      where: {userId: res.locals.user.id}
+    })
+    res.render('saved', {msg: "Selected game saved in the list!",
+  allSaved})
   } else {
-    res.render('/saved', {msg: 'already saved to the list'}
+    const allSaved = await db.savedgame.findAll({
+      where: {userId: res.locals.user.id}
+    })
+    res.render('saved', {msg: 'Selected game is already in the list!',
+  allSaved}
     )
   }
   

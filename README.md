@@ -26,19 +26,20 @@ Then I can help you find and search by title genre and platforms you use
 | VERB | URL pattern | Action \(CRUD\) | Description |
 | :--- | :--- | :--- | :--- |
 | GET | / | Show \(Read\) | render homepage |
-| GET | /login | Show \(Read\) | render login page |
-| GET | /signup | New \(Read\) | render sing up page|
-| POST | /signup |Create \(Create\) | create new user database|
-| GET | /games | Show \(Read\) | show search page|
-| GET | /logout| Show \(Read\) | delete cookies|
+| GET | /users/login | Show \(Read\) | render login page |
+| GET | /users/new | New \(Read\) | render sing up page|
+| POST | /users |Create \(Create\) | create new user database|
+| GET | /search | Show \(Read\) | show search page|
+| GET | /search/results | Show \(Read\) | show search results page|
+| GET | /users/logout| Show \(Read\) | delete cookies|
 | GET | /platform/ | Show \(Read\) | renders all platforms |
 | GET | /genre/ | Show \(Read\) | renders all genres|
 | GET | /platform/:id |show \(Read\)| shows all the games within selected platform
 | GET | /genre/:id | show \(Read\) | shows all the games with selected genre
-| GET | /games/:id | show \(Read\) | shows profiles of selected game
-| GET | /Saved | show \(Read\) | shows games saved for later
+| GET | /search/:id | show \(Read\) | shows profiles of selected game
+| GET | /saved | show \(Read\) | shows games saved for later
 | POST | /saved | create \(create\) | shows profiles of selected game
-| GET | /edit/:id | Edit \(Read\) | Edit profile
+| GET | /users/profile/edit | Edit \(Read\) | Edit profile
 | put | /users/profile| Update \(Update\) | Updates data of user profile
 | DELETE | /saved/:id | Destroy \(DELETE\) | Deletes selected game from Saved games for later
 
