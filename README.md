@@ -6,9 +6,13 @@ Then I can help you find and search by title genre and platforms you use
 
 ---
 
-## Link
+## Link to deployment
 
 - https://freetogame.herokuapp.com/
+
+## Instruction
+
+- 
 
 ## API
  [Free to game](https://www.freetogame.com/api-doc)
@@ -27,25 +31,26 @@ Then I can help you find and search by title genre and platforms you use
 
 ## RESTful Routing Chart
 
-| VERB | URL pattern | Action \(CRUD\) | Description |
+| VERB | URL pattern | CRUD | Description |
 | :--- | :--- | :--- | :--- |
-| GET | / | Show \(Read\) | render homepage |
-| GET | /users/login | Show \(Read\) | render login page |
-| GET | /users/new | New \(Read\) | render sing up page|
-| POST | /users |Create \(Create\) | create new user database|
-| GET | /search | Show \(Read\) | show search page|
-| GET | /search/results | Show \(Read\) | show search results page|
-| GET | /users/logout| Show \(Read\) | delete cookies|
-| GET | /platform/ | Show \(Read\) | renders all platforms |
-| GET | /genre/ | Show \(Read\) | renders all genres|
-| GET | /platform/:id |show \(Read\)| shows all the games within selected platform
-| GET | /genre/:id | show \(Read\) | shows all the games with selected genre
-| GET | /search/:id | show \(Read\) | shows profiles of selected game
-| GET | /saved | show \(Read\) | shows games saved for later
-| POST | /saved | create \(create\) | shows profiles of selected game
-| GET | /users/profile/edit | Edit \(Read\) | Edit profile
-| put | /users/profile| Update \(Update\) | Updates data of user profile
-| DELETE | /saved/:id | Destroy \(DELETE\) | Deletes selected game from Saved games for later
+| GET | / | READ | render homepage |
+| POST | /users |CREATE | create new user database|
+| GET | /users/new | READ | render sing up page|
+| GET | /users/login | READ | render login page |
+| POST | /users/login | READ | Checks user credentials against db
+| GET | /users/logout| READ | logout by deleting cookies|
+| GET | /users/profile| READ | Display user data|
+| put | /users/profile| UPDATE | Updates data of user profile
+| GET | /users/profile/edit | READ | Edit profile
+| GET | /search | READ | display search form|
+| GET | /search/results | READ | show search results page|
+| GET | /genre/ | READ | renders all genres|
+| GET | /genre/:id | READ | List games for selected genre
+| GET | /platform/ | READ | renders all platforms |
+| GET | /platform/:id |READ| list games for selected platform
+| GET | /saved | READ | shows games saved for later
+| POST | /saved | CREATE | Add game data to db
+| DELETE | /saved/:id | DESTROY | Delete selected game from db
 
 ---
 
