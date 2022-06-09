@@ -12,7 +12,16 @@ Then I can help you find and search by title genre and platforms you use
 
 ## Instruction
 
-- 
+- Fork and clone repo.
+- cd into the repo directory
+- 'npm install' to install all packages
+- create gitignore and env file 'touch .gitignore .env'
+- Echo .env >> .gitignore & echo node_modules >> .gitignore
+- install postgres
+- migrate db 'sequelize db:migrate'
+- 'Code .' to open the folder in VS Code
+- Run 'nodemon' to render project
+- Go to http://localhost:3000/
 
 ## API
  [Free to game](https://www.freetogame.com/api-doc)
