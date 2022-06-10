@@ -17,7 +17,6 @@ Then I can help you find and search by title genre and platforms you use
 - 'npm install' to install all packages
 - create gitignore and env file 'touch .gitignore .env'
 - Echo .env >> .gitignore & echo node_modules >> .gitignore
-- install postgres
 - migrate db 'sequelize db:migrate'
 - 'Code .' to open the folder in VS Code
 - Run 'nodemon' to render project
